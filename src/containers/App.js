@@ -56,9 +56,9 @@ class App extends Component {
         this.setState({persons: persons})
     };
 
-    componentWillMount() {
-        console.log('[App.js] componentWillMount');
-    }
+    // componentWillMount() {
+    //     console.log('[App.js] componentWillMount');
+    // }
 
     componentDidMount() {
         console.log('[App.js] componentDidMount');
