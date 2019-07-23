@@ -6,15 +6,17 @@ class App extends Component {
     state = {
         persons: [
             {id: 'aazaza', name: 'Max', age: 28},
-            {id: 'sdgsgd',name: 'Manu', age: 29},
-            {id: 'popkjo',name: 'Stephanie', age: 26}
+            {id: 'sdgsgd', name: 'Manu', age: 29},
+            {id: 'popkjo', name: 'Stephanie', age: 26}
         ],
         otherState: 'some other value',
         showPersons: false
     };
 
     nameChangedHandler = (event, id) => {
-        const personIndex = this.state.persons.findIndex(p => {return p.id === id});
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id === id
+        });
         const person = {
             ...this.state.persons[personIndex]
         };
@@ -72,10 +74,18 @@ class App extends Component {
             style.backgroundColor = 'red';
         }
 
+        let classes = [];
+        if (this.state.persons.length <= 2) {
+            classes.push('red');
+        }
+        if (this.state.persons.length <= 1) {
+            classes.push('bold');
+        }
+
         return (
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
-                <p>This is really working!</p>
+                <p className={classes.join(' ')}>This is really working!</p>
                 <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
                 {persons}
             </div>
