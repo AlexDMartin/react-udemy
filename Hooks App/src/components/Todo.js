@@ -8,6 +8,7 @@ const Todo = props => {
     useEffect(() => {
         axios.get('https://test-a66e0.firebaseio.com/todos.json')
             .then(result => {
+                console.log('result', result);
                 const todoData = result.data;
                 const todos = [];
                 for (const key in todoData) {
@@ -15,7 +16,7 @@ const Todo = props => {
                 }
                 setTodoList(todos);
             })
-    });
+    }, []);
 
     const inputChangedHandler = (event) => {
         setTodoName(event.target.value);
