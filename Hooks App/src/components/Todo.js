@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useReducer} from 'react';
+import React, {useState, useEffect, useReducer, useRef} from 'react';
 import axios from 'axios';
 
 const Todo = props => {
-    const [todoName, setTodoName] = useState('');
+    // const [todoName, setTodoName] = useState('');
+    const todoInputRef = useRef();
     // const [submittedTodo, setSubmittedTodo] = useState(null)
     // const [todoList, setTodoList] = useState([]);
 
@@ -35,7 +36,7 @@ const Todo = props => {
         return () => {
             console.log('Cleanup');
         };
-    }, [todoName]);
+    }, []);
 
     const mouseMoveHandler = (event) => {
         console.log(event.clientX, event.clientY);
@@ -54,11 +55,13 @@ const Todo = props => {
     //     }
     // }, [submittedTodo]);
 
-    const inputChangedHandler = (event) => {
-        setTodoName(event.target.value);
-    };
+    // const inputChangedHandler = (event) => {
+    //     setTodoName(event.target.value);
+    // };
 
     const todoAddHandler = () => {
+        const todoName = todoInputRef.current.value;
+
         axios.post('https://test-a66e0.firebaseio.com/todos.json', {name: todoName})
             .then((result) => {
                 setTimeout(() => {
@@ -87,8 +90,7 @@ const Todo = props => {
             <input
                 type="text"
                 placeholder="Todo"
-                onChange={inputChangedHandler}
-                value={todoName}
+                ref={todoInputRef}
             />
             <button type="button" onClick={todoAddHandler}>Add</button>
             <ul>
