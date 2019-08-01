@@ -12,10 +12,24 @@ const Todo = props => {
                 const todoData = result.data;
                 const todos = [];
                 for (const key in todoData) {
-                    todos.push({id:key, name: todoData[key].name})
+                    todos.push({id: key, name: todoData[key].name})
                 }
                 setTodoList(todos);
-            })
+            });
+        return () => {
+            console.log('Cleanup');
+        };
+    }, [todoName]);
+
+    const mouseMoveHandler = (event) => {
+        console.log(event.clientX, event.clientY);
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousemove', mouseMoveHandler);
+        return () => {
+            document.removeEventListener('mouseMove', mouseMoveHandler)
+        };
     }, []);
 
     const inputChangedHandler = (event) => {
