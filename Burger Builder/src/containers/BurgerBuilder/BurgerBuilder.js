@@ -93,31 +93,33 @@ class BurgerBuilder extends Component {
     };
 
     purchaseSuccessHandler = () => {
-        // alert('You continue');
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Test',
-                address: {
-                    street: 'test street',
-                    zipCode: '123456',
-                    country: 'testCountry'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        };
-        axios.post('/orders.json', order)
-            .then((response) => {
-                console.log('response', response);
-                this.setState({loading: false, purchasing: false});
-            })
-            .catch((error) => {
-                console.log('error', error);
-                this.setState({loading: false, purchasing: false});
-            });
+        // // alert('You continue');
+        // this.setState({loading: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Test',
+        //         address: {
+        //             street: 'test street',
+        //             zipCode: '123456',
+        //             country: 'testCountry'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // };
+        // axios.post('/orders.json', order)
+        //     .then((response) => {
+        //         console.log('response', response);
+        //         this.setState({loading: false, purchasing: false});
+        //     })
+        //     .catch((error) => {
+        //         console.log('error', error);
+        //         this.setState({loading: false, purchasing: false});
+        //     });
+
+        this.props.history.push('/checkout');
     };
 
     render() {
