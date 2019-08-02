@@ -47,18 +47,8 @@ class BurgerBuilder extends Component {
         this.setState({purchasing: false});
     };
 
-    purchaseSuccessHandler = () => {
-        // // alert('You continue');
-        const queryParam = [];
-        for (let i in this.state.ingredients) {
-            queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
-        queryParam.push('price=' + this.state.totalPrice);
-        const queryString= queryParam.join('&');
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+    purchaseContinueHandler = () => {
+        this.props.history.push('/checkout');
     };
 
     render() {
@@ -86,7 +76,7 @@ class BurgerBuilder extends Component {
                 ingredients={this.props.ings}
                 price={this.props.price}
                 purchaseCanceled={this.purchaseCancelHandler}
-                purchaseContinued={this.purchaseSuccessHandler}
+                purchaseContinued={this.purchaseContinueHandler}
             />;
         }
         if (this.state.loading) {
